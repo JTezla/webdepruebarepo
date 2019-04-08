@@ -1,4 +1,5 @@
-@include('header')
-@include('barranav')
+@extends('plantilla')
+
+@section('contenido')
 <h2>Formulario</h2>
-@include('footer')
+@endsection

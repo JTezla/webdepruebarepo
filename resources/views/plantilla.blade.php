@@ -33,3 +33,18 @@
 <header>
 	<h1>Test Page</h1>
 </header>
+<nav>
+	<ul>
+		<li><a href="/">Home Page</a></li>
+		<li><a href="/formulario">Formulario</a></li>
+		<li><a href="/lay">Layout</a></li>
+	</ul>
+</nav>
+
+<!-- Contenido de la seccion-->
+@yield('contenido')
+
+<footer>
+	<p>Contacto :email@dominio.com</p>
+</footer>
+</html>

@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/formulario',function(){
 	return view('formulario');
 });
+
+Route::get('/lay',function(){
+	return view('plantilla');
+});
+
