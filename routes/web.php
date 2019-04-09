@@ -23,3 +23,4 @@ Route::get('/lay',function(){
 	return view('plantilla');
 });
 
+

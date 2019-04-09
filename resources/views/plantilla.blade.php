@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home page Webdeprueba</title>
+	<title> @yield('nombrehead') - WebTest</title>
 	<style>
 		*{
 			margin-left: 50px;
@@ -40,10 +40,8 @@
 		<li><a href="/lay">Layout</a></li>
 	</ul>
 </nav>
-
 <!-- Contenido de la seccion-->
 @yield('contenido')
-
 <footer>
 	<p>Contacto :email@dominio.com</p>
 </footer>
