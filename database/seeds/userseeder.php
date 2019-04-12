@@ -33,6 +33,8 @@ class userseeder extends Seeder
             'password'=>bcrypt('laravel'),
         ]);
 
+        factory(User::class,8)->create();
+
         //DB::table('users')->insert([
         //'name'=>'Jorge Villalobos',
         //'email'=>'jvillalobos@quantumbit.mx',

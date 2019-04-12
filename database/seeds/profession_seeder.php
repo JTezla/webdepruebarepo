@@ -25,6 +25,8 @@ class profession_seeder extends Seeder
             'title' => 'Programador',
         ]);
 
+        factory(Profession::class,7)->create();
+
         //DB::table('professions')->insert([
         //    'title' => 'Desarrollador Back-end',
         //]);

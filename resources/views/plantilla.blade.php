@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title> @yield('nombrehead') - WebTest</title>
-	<style>
-		*{
-			margin-left: 50px;
-		}
-		header {
-			text-align: center;
-			font-size: 20px;
-			background-color: #FF0202;
-			border-radius: 10px;
-			border: 3px solid #181818;
-		}
-		footer{
-			background-color: #B89696;
-			border-radius: 5px;
-			border: 1px solid #181818;
-			padding-left: 20px;
-		}
-		body{
-			text-align: justify;
-			width: 1080px; 
-		}
-		nav{
-			position: absolute;
-			top: 10px;
-			left: -200px;
-		}
-	</style>
+    <title> @yield('nombrehead') - WebTest</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
-<header>
-	<h1>Test Page</h1>
-</header>
-<nav>
-	<ul>
-		<li><a href="/">Home Page</a></li>
-		<li><a href="/formulario">Formulario</a></li>
-		<li><a href="/lay">Layout</a></li>
-	</ul>
-</nav>
-<!-- Contenido de la seccion-->
-@yield('contenido')
-<footer>
-	<p>Contacto :email@dominio.com</p>
-</footer>
+
+<body>
+    <header>
+        
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home Page <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formulario">Formulario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios">Lista de Usuarios</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido de la seccion-->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+				@yield('contenido')
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <footer>
+                <p>Contacto : Email@dominio.com</p>
+            </footer>
+        </div>
+    </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>
