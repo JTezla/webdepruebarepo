@@ -19,6 +19,4 @@ Route::get('/formulario',function(){
 	return view('formulario');
 });
 
-Route::get('/usuarios',function(){
-	return view('usuarios');
-});
+Route::get('/usuarios','users_controller@index');
