@@ -20,7 +20,7 @@
                     <a class="nav-link" href="/">Home Page <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/formulario">Formulario</a>
+                    <a class="nav-link" href="/usuario_nuevo">Registrar Usuario</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/usuarios">Lista de Usuarios</a>

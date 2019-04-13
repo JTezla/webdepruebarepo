@@ -21,16 +21,11 @@ class userseeder extends Seeder
         //$prof=DB::table('professions')->select('id')->first()->id;
         $professionid=Profession::where('title','=','Desarrollador Back-end')->value('id');
         
-        User::create([
+       User::create([
             'name'=>'Juan Garcia',
             'email'=>'jgarcia@quantumbit.mx',
             'password'=>bcrypt('laravel'),
             'profession_id'=>$professionid,
-        ]);
-        User::create([
-            'name'=>'Jorge Villalobos',
-            'email'=>'jvillalobos@quantumbit.mx',
-            'password'=>bcrypt('laravel'),
         ]);
 
         factory(User::class,8)->create();

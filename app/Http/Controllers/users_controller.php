@@ -17,4 +17,10 @@ class users_controller extends Controller
      return view('usuarios')
      ->with('listusers', User::all());
     }
+
+    public function details($id){
+        $user=User::find($id);
+    return view('userdetails',[ 'user'=>$user]);
+    //"Mostrando detalles de usuario : {$id}";
+    }
 }

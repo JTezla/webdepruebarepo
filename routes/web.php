@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/formulario',function(){
-	return view('formulario');
+Route::get('/usuario_nuevo',function(){
+	return view('usuario_nuevo');
 });
 
 Route::get('/usuarios','users_controller@index');
+
+Route::get('/usuarios/usuario{id}','users_controller@details');
