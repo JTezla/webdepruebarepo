@@ -28,12 +28,6 @@ class userseeder extends Seeder
             'profession_id'=>$professionid,
         ]);
 
-        factory(User::class,8)->create();
-
-        //DB::table('users')->insert([
-        //'name'=>'Jorge Villalobos',
-        //'email'=>'jvillalobos@quantumbit.mx',
-        //'password'=>bcrypt('laravel'),
-        //]); 
+        factory(User::class,9)->create();
     }
 }

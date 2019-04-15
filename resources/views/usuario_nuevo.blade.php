@@ -1,7 +1,24 @@
 @extends('plantilla')
 
 @section('contenido')
-<form action="">
+
+@if ($errors->any())
+
+<div class="alert alert-danger">
+    <p>Corrige los errores de abajo:</p>
+    {{--     <ul>
+        @foreach ($errors->all() as $error)
+        <li>
+            {{ $error }}
+    </li>
+    @endforeach
+    </ul>--}}
+</div>
+@endif
+
+
+<form action="{{url('/usuario_nuevo')}}" method="POST">
+    {{ csrf_field() }}
     <!-- Campo para ingresar Nombre -->
     <div class="form-group row">
         <label for="inputnombreuser" class="col-2 col-md-2 col-form-label">Nombre:</label>
@@ -12,10 +29,18 @@
                         <i class="fas fa-user"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" id="inputnombreuser" placeholder="Nombre Usuario">
+                <input type="text" class="form-control" name="name" id="inputnombreuser" placeholder="Nombre Usuario"
+                    value="{{old('name')}}">
             </div>
         </div>
     </div>
+    @if ($errors->has('name'))
+    <div class="row justify-content-center">
+        <div class="text-danger">
+            <p>{{ $errors->first('name')}}</p>
+        </div>
+    </div>
+    @endif
     <!-- Campo para ingresar Email: -->
     <div class="form-group row">
         <label for="inputemailuser" class="col-2 col-md-2 col-form-label">Email:</label>
@@ -26,13 +51,14 @@
                         <i class="fas fa-envelope"></i>
                     </span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email" id="inputemailuser">
+                <input type="email" class="form-control" name="email" placeholder="Email" id="inputemailuser"
+                    value="{{old('email')}}">
             </div>
         </div>
     </div>
-    <!-- Campo de Apodo -->
+    <!-- Campo de Password -->
     <div class="row form-group">
-        <label for="inputnickuser" class="col-form-label col-2 col-md-2">Apodo:</label>
+        <label for="inputpassuser" class="col-form-label col-2 col-md-2">Password:</label>
         <div class="col-9 col-md-10">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -40,7 +66,7 @@
                         <i class="fab fa-odnoklassniki"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" id="inputnickuser" placeholder="Nickname">
+                <input type="password" class="form-control" name="password" id="inputpassuser" placeholder="Password">
             </div>
         </div>
     </div>

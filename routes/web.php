@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/usuario_nuevo',function(){
-	return view('usuario_nuevo');
-});
+Route::get('/usuario_nuevo','users_controller@nuevo');
 
-Route::get('/usuarios','users_controller@index');
+Route::post('/usuario_nuevo','users_controller@crear')->name('users.nuevo.r');
 
-Route::get('/usuarios/usuario{id}','users_controller@details');
+Route::get('/usuarios','users_controller@index')->name('users.r');
+
+Route::get('/usuarios/detalles/{user}','users_controller@details')->name('users.details.r');
+
