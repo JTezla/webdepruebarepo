@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/usuarios">Lista de Usuarios</a>
                 </li>
+                {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{route('users.edit.r')}}">Editar Usuario</a>
+                </li> --}}
             </ul>
         </div>
     </nav>

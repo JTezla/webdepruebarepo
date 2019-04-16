@@ -36,11 +36,11 @@ class users_controller extends Controller
         $user=request()->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password'=>'required',
+            'password'=>'required|min:6',
             ],[
-            'name.required'=> 'El campo Nombre es Obligatorio'
-            'email.required'=> 'El campo Email es Obligatorio'
-            'password.required'=> 'El campo Password es Obligatorio'
+            'name.required'=> 'El campo Nombre es Obligatorio',
+            'email.required'=> 'El campo Email es Obligatorio',
+            'password.required'=> 'El password debe contener mínimo de 6 caracteres',
         ]);
        /*  if (empty($user['name'])){
 
@@ -54,5 +54,9 @@ class users_controller extends Controller
             'password'=>$user['password']
         ]);
         return redirect(route('users.r'));
+    }
+
+    public function editar(){
+        return view('edit_users');
     }
 }

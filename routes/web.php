@@ -17,9 +17,12 @@ Route::get('/', function () {
 
 Route::get('/usuario_nuevo','users_controller@nuevo');
 
-Route::post('/usuario_nuevo','users_controller@crear')->name('users.nuevo.r');
-
 Route::get('/usuarios','users_controller@index')->name('users.r');
 
+Route::post('/usuario_nuevo','users_controller@crear')->name('users.nuevo.r');
+
+Route::get('usuarios/{id}/editar','users_controller@editar')->name('users.edit.r');
+
 Route::get('/usuarios/detalles/{user}','users_controller@details')->name('users.details.r');
+
 

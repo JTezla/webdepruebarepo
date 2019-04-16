@@ -57,4 +57,15 @@ class usersblockTest extends TestCase
 
         }
 
+/** @test */
+    public function cargar_editar_usuario(){
+
+        $this->withoutExceptionHandling();
+        $user=factory(User::class)->create();
+    
+        $this->get("/usuarios/{$user->id}/editar")
+        ->assertStatus(200)
+        ->assertViewIs('edit_users');
+    }
+
 }

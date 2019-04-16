@@ -34,6 +34,7 @@
             </div>
         </div>
     </div>
+    {{-- Mostrar error de campo de nombre--}}
     @if ($errors->has('name'))
     <div class="row justify-content-center">
         <div class="text-danger">
@@ -56,6 +57,14 @@
             </div>
         </div>
     </div>
+    {{-- Mostrar error de campo de email --}}
+    @if ($errors->has('email'))
+    <div class="row justify-content-center">
+        <div class="text-danger">
+            <p>{{ $errors->first('email')}}</p>
+        </div>
+    </div>
+    @endif
     <!-- Campo de Password -->
     <div class="row form-group">
         <label for="inputpassuser" class="col-form-label col-2 col-md-2">Password:</label>
@@ -70,6 +79,14 @@
             </div>
         </div>
     </div>
+    {{-- Mostrar error de campo de password --}}
+    @if ($errors->has('password'))
+    <div class="row justify-content-center">
+        <div class="text-danger">
+            <p>{{ $errors->first('password')}}</p>
+        </div>
+    </div>
+    @endif
     <!-- Apartado de Botones -->
     <!-- Boton Atras-->
     <div class="row justify-content-center mb-2">
