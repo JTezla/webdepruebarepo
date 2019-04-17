@@ -16,9 +16,7 @@
 <p>
     <a href="{{url("/usuarios")}}">Regresar a Listado de usuarios</a>
 </p>
-<p>
-        <a href="{{route('users.edit.r',['user'=>$user])}}">Editar usuario</a>
-</p>
+
 
 
     

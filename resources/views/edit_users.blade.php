@@ -78,21 +78,15 @@
     <!-- Apartado de Botones -->
     <!-- Boton Atras-->
     <div class="row justify-content-center mb-2">
-        <div class="col-3">
+        <div class="col-4">
             <button type="button" class="btn btn-secondary btn-block">
                 <i class="fas fa-undo"></i>
             </button>
         </div>
         <!-- Boton Guardar -->
-        <div class="col-3">
+        <div class="col-4">
             <button type="submit" class="btn btn-success btn-block">
                 <i class="fas fa-save"></i>
-            </button>
-        </div>
-        <!-- Boton Editar -->
-        <div class="col-3">
-            <button type="button" class="btn btn-warning btn-block">
-                <i class="fas fa-user-edit"></i>
             </button>
         </div>
     </div>

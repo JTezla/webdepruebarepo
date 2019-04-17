@@ -46,7 +46,7 @@ class usersblockTest extends TestCase
         /** @test */
         public function validate_name_notnull()
         {
-                 $this->from('/usuario_nuevo')->post('/usuario_nuevo',[
+            $this->from('/usuario_nuevo')->post('/usuario_nuevo',[
                 'email'=>'jgarcia@qb.mx',
                 'password'=>'123456',
             ])->assertRedirect('/usuario_nuevo')
@@ -58,7 +58,6 @@ class usersblockTest extends TestCase
 
 /** @test */
     public function cargar_editar_usuario(){
-
        // $this->withoutExceptionHandling();
         $user=factory(User::class)->create();
     
@@ -69,21 +68,20 @@ class usersblockTest extends TestCase
 
     /** @test */
     public function update_usuario(){
-
-        
+      $this->withoutExceptionHandling();
         $user=factory(User::class)->create();
 
         $this->from("usuarios/detalles/{$user->id}/editar")
         ->put("usuarios/{$user->id}",[
             'name'=>'Juancho',
             'email' => 'juancho@gmail.com',
-            'password'=> '12',
-        ])->assertRedirect("usuarios/detalles/{$user->id}");
+            'password'=> '1234567',
+        ])->assertRedirect("/usuarios");
 
         $this->assertCredentials([
         'name'          =>  'Juancho',
         'email'         =>  'juancho@gmail.com',
-        'password'      =>  '12',
+        'password'      =>  '1234567',
         ]);
     }
 
@@ -91,7 +89,7 @@ class usersblockTest extends TestCase
     /** @test */
     public function validate_pass_optional()
     {
-        $this->withoutExceptionHandling();
+       // $this->withoutExceptionHandling();
         $user=factory(User::class)->create([
             'password'=> bcrypt('123456a')
         ]);
@@ -101,12 +99,25 @@ class usersblockTest extends TestCase
         'name'      =>'Juancho',
         'email'     => 'juancho@gmail.com',
         'password'  => '',
-        ])->assertRedirect("usuarios/detalles/{$user->id}");
+        ])->assertRedirect("usuarios");
 
         $this->assertCredentials([
         'name'      =>'Juancho',
         'email'     => 'juancho@gmail.com',
         'password'  => '123456a'
         ]);
-    }    
+    }   
+    
+     /** @test */
+    public function it_deletes_users()
+    {
+        $this->withoutExceptionHandling();
+        $user= factory(User::class)->create();
+
+        $this->delete("/usuarios/{$user->id}")
+        ->assertRedirect('/usuarios');
+
+        $this->assertSame(0, User::count());
+    }
+     
 }

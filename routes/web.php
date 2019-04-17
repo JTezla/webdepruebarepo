@@ -25,6 +25,8 @@ Route::get('/usuarios/{user}/editar','users_controller@editar')->name('users.edi
 
 Route::put('/usuarios/{user}','users_controller@update')->name('users.update.r');
 
+Route::delete('usuarios/{user}','users_controller@destroy')->name('users.destroy.r');
+
 Route::get('/usuarios/detalles/{user}','users_controller@details')->name('users.details.r');
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Arr;
 
 class users_controller extends Controller
 {
@@ -32,8 +34,8 @@ class users_controller extends Controller
         return view('usuario_nuevo');
     }
 
-    public function crear(){
-        $user=request()->validate([
+    public function crear(Request $request){
+        $user=$request->validate([
                 'name'          => 'required',
                 'email'         => 'required|email|unique:users,email',
                 'password'      =>'required|min:6'
@@ -47,7 +49,7 @@ class users_controller extends Controller
         User::create([
             'name'      =>  $user['name'],
             'email'     =>  $user['email'],
-            'password'  =>  $user['password']
+            'password'  =>  bcrypt($user['password'])
         ]);
         return redirect(route('users.r'));
     }
@@ -56,11 +58,11 @@ class users_controller extends Controller
         return view('edit_users',['user'=>$user]);
     }
 
-    public function update(User $user){ //Request $request,User $user
-        $data=request()->validate([
-            'name'          => 'required',
+    public function update(Request $request, User $user){
+        $data = $request->validate([
+            'name'          => 'required|string',
             'email'         => 'required|email|unique:users,email,'. $user->id,
-            'password'      =>  ''
+            'password'      => 'nullable|string|min:6'
             ]);
 
         if ($data['password'] != null) {
@@ -68,9 +70,17 @@ class users_controller extends Controller
         }else{
             unset($data['password']);
         } 
-
+       
     $user->update($data);
 
-    return redirect()->route('users.details.r',['user'=>$user]);
+    return redirect()->route('users.r')->with('hola','Usuario Actualizado correctamente'); 
+    }
+
+    public function destroy(User $user){
+
+    $user->delete();
+
+    return redirect()->route('users.r')->with('borrado','Usuario Eliminado Correctamente');
+
     }
 }

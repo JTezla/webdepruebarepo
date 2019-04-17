@@ -98,12 +98,6 @@
                 <i class="fas fa-save"></i>
             </button>
         </div>
-        <!-- Boton Editar -->
-        <div class="col-3">
-            <button type="button" class="btn btn-warning btn-block">
-                <i class="fas fa-user-edit"></i>
-            </button>
-        </div>
     </div>
 </form>
 @endsection

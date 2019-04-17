@@ -2,16 +2,16 @@
 <html>
 
 <head>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('nombrehead') - WebTest</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
     <header>
-        
+
     </header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,11 +33,33 @@
         </div>
     </nav>
 
+
+
     <!-- Contenido de la seccion-->
     <div class="container">
         <div class="row">
             <div class="col">
-				@yield('contenido')
+
+                @if (Session::has('hola'))
+
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ session('hola') }}</strong>
+                </div>
+
+                @endif
+
+                @if (Session::has('borrado'))
+
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ session('borrado') }}</strong>
+                </div>
+
+                @endif
+
+                @yield('contenido')
+
             </div>
         </div>
     </div>
@@ -51,4 +73,5 @@
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
 </html>
