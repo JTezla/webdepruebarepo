@@ -10,8 +10,8 @@
     <ul>
         @foreach ($listusers as $user)
         <li>
-            {{$user->name .' '}},{{' '.$user->email}}
-        <a href="{{route('users.details.r',['id'=> $user->id])}}">Ver detalles</a>
+            
+        <a href="{{route('users.details.r',['id'=> $user->id])}}"> {{$user->name}}</a>
         </li>
         @endforeach
     </ul>

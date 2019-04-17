@@ -44,7 +44,7 @@ class usersblockTest extends TestCase
       }
 
         /** @test */
-        public function validate_users_info()
+        public function validate_name_notnull()
         {
                  $this->from('/usuario_nuevo')->post('/usuario_nuevo',[
                 'email'=>'jgarcia@qb.mx',
@@ -54,13 +54,12 @@ class usersblockTest extends TestCase
 
             $this->assertEquals(0,User::count());;
            /*  $this->assertDatabaseMissing('users',['email'=>'jgarcia@qb.mx']); */
-
         }
 
 /** @test */
     public function cargar_editar_usuario(){
 
-        $this->withoutExceptionHandling();
+       // $this->withoutExceptionHandling();
         $user=factory(User::class)->create();
     
         $this->get("/usuarios/{$user->id}/editar")
@@ -68,4 +67,46 @@ class usersblockTest extends TestCase
         ->assertViewIs('edit_users');
     }
 
+    /** @test */
+    public function update_usuario(){
+
+        
+        $user=factory(User::class)->create();
+
+        $this->from("usuarios/detalles/{$user->id}/editar")
+        ->put("usuarios/{$user->id}",[
+            'name'=>'Juancho',
+            'email' => 'juancho@gmail.com',
+            'password'=> '12',
+        ])->assertRedirect("usuarios/detalles/{$user->id}");
+
+        $this->assertCredentials([
+        'name'          =>  'Juancho',
+        'email'         =>  'juancho@gmail.com',
+        'password'      =>  '12',
+        ]);
+    }
+
+
+    /** @test */
+    public function validate_pass_optional()
+    {
+        $this->withoutExceptionHandling();
+        $user=factory(User::class)->create([
+            'password'=> bcrypt('123456a')
+        ]);
+
+        $this->from("usuarios/detalles/{$user->id}/editar")
+        ->put("usuarios/{$user->id}",[
+        'name'      =>'Juancho',
+        'email'     => 'juancho@gmail.com',
+        'password'  => '',
+        ])->assertRedirect("usuarios/detalles/{$user->id}");
+
+        $this->assertCredentials([
+        'name'      =>'Juancho',
+        'email'     => 'juancho@gmail.com',
+        'password'  => '123456a'
+        ]);
+    }    
 }

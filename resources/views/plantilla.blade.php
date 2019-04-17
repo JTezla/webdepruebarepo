@@ -2,6 +2,7 @@
 <html>
 
 <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('nombrehead') - WebTest</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -41,7 +42,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container bg-gradient-warning">
         <div class="row">
             <footer>
                 <p>Contacto : Email@dominio.com</p>

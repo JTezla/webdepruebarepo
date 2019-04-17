@@ -29,19 +29,18 @@
                         <i class="fas fa-user"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="name" id="inputnombreuser" placeholder="Nombre Usuario"
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : ''}}" name="name" id="inputnombreuser" placeholder="Nombre Usuario"
                     value="{{old('name')}}">
+                    {{-- Mostrar error de campo nombre --}}
+                    @if ($errors->has('name'))
+                            <div class="invalid-feedback">
+                             {{ $errors->first('name')}}
+                           </div>
+                     @endif
             </div>
         </div>
     </div>
-    {{-- Mostrar error de campo de nombre--}}
-    @if ($errors->has('name'))
-    <div class="row justify-content-center">
-        <div class="text-danger">
-            <p>{{ $errors->first('name')}}</p>
-        </div>
-    </div>
-    @endif
+  
     <!-- Campo para ingresar Email: -->
     <div class="form-group row">
         <label for="inputemailuser" class="col-2 col-md-2 col-form-label">Email:</label>
@@ -52,19 +51,18 @@
                         <i class="fas fa-envelope"></i>
                     </span>
                 </div>
-                <input type="email" class="form-control" name="email" placeholder="Email" id="inputemailuser"
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid':''}}" name="email" placeholder="Email" id="inputemailuser"
                     value="{{old('email')}}">
+                    {{-- Mostrar error de campo de email --}}
+                    @if ($errors->has('email'))
+                            <div class="invalid-feedback">
+                             {{ $errors->first('email')}}
+                           </div>
+                     @endif
             </div>
         </div>
     </div>
-    {{-- Mostrar error de campo de email --}}
-    @if ($errors->has('email'))
-    <div class="row justify-content-center">
-        <div class="text-danger">
-            <p>{{ $errors->first('email')}}</p>
-        </div>
-    </div>
-    @endif
+
     <!-- Campo de Password -->
     <div class="row form-group">
         <label for="inputpassuser" class="col-form-label col-2 col-md-2">Password:</label>
@@ -75,18 +73,17 @@
                         <i class="fab fa-odnoklassniki"></i>
                     </span>
                 </div>
-                <input type="password" class="form-control" name="password" id="inputpassuser" placeholder="Password">
+            <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid':''}}" name="password" id="inputpassuser" placeholder="Password">
+                {{-- Mostrar error de campo de password --}}
+                @if ($errors->has('password'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('password')}}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-    {{-- Mostrar error de campo de password --}}
-    @if ($errors->has('password'))
-    <div class="row justify-content-center">
-        <div class="text-danger">
-            <p>{{ $errors->first('password')}}</p>
-        </div>
-    </div>
-    @endif
+
     <!-- Apartado de Botones -->
     <!-- Boton Atras-->
     <div class="row justify-content-center mb-2">

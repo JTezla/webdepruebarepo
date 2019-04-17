@@ -34,29 +34,43 @@ class users_controller extends Controller
 
     public function crear(){
         $user=request()->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password'=>'required|min:6',
-            ],[
-            'name.required'=> 'El campo Nombre es Obligatorio',
-            'email.required'=> 'El campo Email es Obligatorio',
-            'password.required'=> 'El password debe contener mínimo de 6 caracteres',
+                'name'          => 'required',
+                'email'         => 'required|email|unique:users,email',
+                'password'      =>'required|min:6'
+                ],
+                [
+                'name.required'     => 'El campo Nombre es Obligatorio',
+                'email.required'    => 'El campo Email es Obligatorio',
+                'password.required' => 'El password debe contener mínimo de 6 caracteres',
         ]);
-       /*  if (empty($user['name'])){
 
-            return redirect(route('users.nuevo.r'))->withErrors([
-                'name' => 'El campo es obligatorio',
-            ]);
-        } */
         User::create([
-            'name'=> $user['name'],
-            'email'=> $user['email'],
-            'password'=>$user['password']
+            'name'      =>  $user['name'],
+            'email'     =>  $user['email'],
+            'password'  =>  $user['password']
         ]);
         return redirect(route('users.r'));
     }
 
-    public function editar(){
-        return view('edit_users');
+    public function editar(User $user){
+        return view('edit_users',['user'=>$user]);
+    }
+
+    public function update(User $user){ //Request $request,User $user
+        $data=request()->validate([
+            'name'          => 'required',
+            'email'         => 'required|email|unique:users,email,'. $user->id,
+            'password'      =>  ''
+            ]);
+
+        if ($data['password'] != null) {
+            $data['password']=bcrypt($data['password']);
+        }else{
+            unset($data['password']);
+        } 
+
+    $user->update($data);
+
+    return redirect()->route('users.details.r',['user'=>$user]);
     }
 }
