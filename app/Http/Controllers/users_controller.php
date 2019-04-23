@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Arr;
 
+use App\Http\Requests\CrearUserPost;
+
 class users_controller extends Controller
 {
     public function index(){
@@ -34,8 +36,8 @@ class users_controller extends Controller
         return view('usuario_nuevo');
     }
 
-    public function crear(Request $request){
-        $user=$request->validate([
+    public function crear(CrearUserPost $request){
+       /*  $user=$request->validate([
                 'name'          => 'required',
                 'email'         => 'required|email|unique:users,email',
                 'password'      =>'required|min:6'
@@ -44,8 +46,8 @@ class users_controller extends Controller
                 'name.required'     => 'El campo Nombre es Obligatorio',
                 'email.required'    => 'El campo Email es Obligatorio',
                 'password.required' => 'El password debe contener mínimo de 6 caracteres',
-        ]);
-
+        ]); */
+        $user=$request;
         User::create([
             'name'      =>  $user['name'],
             'email'     =>  $user['email'],
